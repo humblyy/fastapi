@@ -2,13 +2,13 @@
 
 from jose import JWTError,jwt
 from datetime import timedelta,datetime
-import schemas
+from .schemas import schemas
 from fastapi import HTTPException,status,Depends
 from fastapi.security import OAuth2PasswordBearer
-from database import get_db
+from .database import get_db
 from sqlalchemy.orm import Session
-import models
-from envConfig import settings
+from .models import models
+from .envConfig import settings
 
 JWT_SECRET_KEY=settings.jwt_secret_key
 ALGORITHM=settings.algorithm
