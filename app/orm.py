@@ -23,6 +23,9 @@ app.add_middleware(
     allow_origins=origins
 )
 
+@app.get("/")
+def home():
+    return {"msg":"welcome to the home page"}
 
 app.include_router(postRoutes.router)
 app.include_router(userRoutes.router)
