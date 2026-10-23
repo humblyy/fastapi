@@ -3,11 +3,11 @@ from fastapi import HTTPException,status,APIRouter,Depends
 
 router=APIRouter(tags=["authentication"])
 
-from database import get_db
+from ..database import get_db
 from sqlalchemy.orm import Session
-import models
-from utils import verify_password
-from oauth2 import create_jwt_token
+from .. import models
+from ..utils import verify_password
+from ..oauth2 import create_jwt_token
 from fastapi.security import OAuth2PasswordRequestForm
 # login
 

@@ -9,9 +9,9 @@ from typing import List, Optional
 
 from .. import schemas
 from .. import models  
-from database import get_db
+from ..database import get_db
 from sqlalchemy.orm import Session
-import oauth2
+from .. import oauth2
 from sqlalchemy import func
 
 router=APIRouter(

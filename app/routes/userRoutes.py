@@ -7,7 +7,7 @@ from fastapi import Depends,HTTPException,status,APIRouter
 # db connection for alchemy
 from .. import schemas
 from .. import models  
-from database import engine,get_db
+from ..database import engine,get_db
 from sqlalchemy.orm import Session
 
 router=APIRouter(
@@ -15,7 +15,7 @@ router=APIRouter(
     tags=["users"]
     )
 # hash
-from utils import hash_fun
+from ..utils import hash_fun
 models.Base.metadata.create_all(bind=engine)
 
 
