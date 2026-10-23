@@ -2,7 +2,7 @@
 from fastapi import HTTPException,status,APIRouter,Depends
 
 router=APIRouter(tags=["authentication"])
-import schemas
+
 from database import get_db
 from sqlalchemy.orm import Session
 import models

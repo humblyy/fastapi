@@ -5,8 +5,8 @@ from fastapi import Depends,HTTPException,status,APIRouter
 
 
 # db connection for alchemy
-import schemas
-import models  
+from .. import schemas
+from .. import models  
 from database import engine,get_db
 from sqlalchemy.orm import Session
 
