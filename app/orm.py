@@ -5,7 +5,7 @@ from fastapi import FastAPI
 
 # db connection for alchemy
 
-from app.models import models  
+from .models import models  
 from .database import engine
 
 from routes import userRoutes,postRoutes,authRoutes,voteRoutes
