@@ -5,17 +5,23 @@ from fastapi import Depends,HTTPException,status,APIRouter
 
 
 # db connection for alchemy
-from .. import schemas
-from .. import models  
-from ..database import engine,get_db
+from app import schemas
+from app import models  
+from app.database import engine,get_db
 from sqlalchemy.orm import Session
+
+# from .. import schemas
+# from .. import models  
+# from ..database import engine,get_db
+# from sqlalchemy.orm import Session
 
 router=APIRouter(
     prefix="/users",
     tags=["users"]
     )
 # hash
-from ..utils import hash_fun
+from app.utils import hash_fun
+# from ..utils import hash_fun
 models.Base.metadata.create_all(bind=engine)
 
 
@@ -30,8 +36,9 @@ def create_user(user:schemas.CreateUser,db:Session=Depends(get_db)):
 #    hashed_password_str = hashed_bytes.decode('utf-8')
 #   email=user.email,password=hashed_password_str
     hashed_password=hash_fun(user.password)
+    # dict() same as model_dump
     user.password=hashed_password
-    new_user= models.User(**user.dict())
+    new_user= models.User(**user.model_dump()) 
     db.add(new_user)
     db.commit()
     db.refresh(new_user)

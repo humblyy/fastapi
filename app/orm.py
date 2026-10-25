@@ -1,16 +1,22 @@
 
-
-
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
+from app import models
+from app.database import engine
+from app.routes import userRoutes, postRoutes, authRoutes, voteRoutes
+
+
 
 # db connection for alchemy
 
-from . import models  
-from .database import engine
 
-from .routes import userRoutes,postRoutes,authRoutes,voteRoutes
+# from . import models  
+# from .database import engine
 
-from fastapi.middleware.cors import CORSMiddleware
+# from .routes import userRoutes,postRoutes,authRoutes,voteRoutes
+
+# from fastapi.middleware.cors import CORSMiddleware
 
 # sqlalchemy to connect to the database and create all the tables and columns when the app starts if alembic is used this one is not needed
 models.Base.metadata.create_all(bind=engine)

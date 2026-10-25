@@ -3,11 +3,19 @@ from fastapi import HTTPException,status,APIRouter,Depends
 
 router=APIRouter(tags=["authentication"])
 
-from ..database import get_db
+from app.database import get_db
+
+
 from sqlalchemy.orm import Session
-from .. import models
-from ..utils import verify_password
-from ..oauth2 import create_jwt_token
+from app import models
+from app.utils import verify_password
+from app.oauth2 import create_jwt_token
+
+# from ..database import get_db
+# from sqlalchemy.orm import Session
+# from .. import models
+# from ..utils import verify_password
+# from ..oauth2 import create_jwt_token
 from fastapi.security import OAuth2PasswordRequestForm
 # login
 
@@ -16,11 +24,11 @@ from fastapi.security import OAuth2PasswordRequestForm
 def user_login(user:OAuth2PasswordRequestForm=Depends(),db:Session=Depends(get_db)):
     fetch_user=db.query(models.User).filter(models.User.email==user.username).first()
     if not fetch_user:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail="user with this credential not found")
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,detail="invalid credentails")
     checkUser=verify_password(user.password,fetch_user.password)
 
     if not checkUser:
-        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,detail="incorrect password")
+        raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,detail="invalid credentails")
     
     payload={"user_id":fetch_user.id}
     jwt_token=create_jwt_token(payload)

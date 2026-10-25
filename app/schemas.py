@@ -2,7 +2,7 @@
 
 from datetime import datetime
 
-from pydantic import BaseModel,EmailStr, Field
+from pydantic import BaseModel,EmailStr, Field,ConfigDict
 from typing import Optional
 
 
@@ -24,8 +24,9 @@ class ResponseSchema(BaseSchema):
 class postOut(BaseModel):
     Post:ResponseSchema
     votes:int
-    class Config:
-        from_attributes = True
+    # class Config:
+    #     from_attributes = True
+    model_config = ConfigDict(from_attributes=True)
 
 
 # user schema
@@ -37,8 +38,10 @@ class UserResponse(BaseModel):
     id:int
     email:EmailStr
     created_at:datetime
-    class Config:
-        from_attribuites=True
+    # class Config:
+    #     from_attribuites=True
+    model_config = ConfigDict(from_attributes=True)
+    
 
 
 class Token(BaseModel):

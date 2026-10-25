@@ -7,9 +7,11 @@
 
 
 from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base
+# from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import declarative_base
 from sqlalchemy.orm import sessionmaker
-from .envConfig import settings
+from app.envConfig import settings
+# from .envConfig import settings
 
 # establish connection between database and sqlalchemy
 SQLALCHEMY_DATABASE_URL=f'postgresql://{settings.database_username}:{settings.database_password}@{settings.database_hostname}/{settings.database_name}'

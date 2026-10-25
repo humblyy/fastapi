@@ -1,7 +1,8 @@
 
 from sqlalchemy import TIMESTAMP, Column, Integer,String,Boolean, text,ForeignKey
 
-from .database import Base
+from app.database import Base
+# from .database import Base
 from sqlalchemy.orm import relationship
 # create model or table using python
 # creating all the tables
@@ -22,7 +23,7 @@ class User(Base):
     email=Column(String,nullable=False ,unique=True)
     password=Column(String,nullable=False)
     created_at=Column(TIMESTAMP(timezone=True),server_default=text("now()"),nullable=False)
-    phone=Column(String,nullable=False)
+   
    
 class Votes(Base):
     __tablename__="votes"

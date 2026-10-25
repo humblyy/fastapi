@@ -7,12 +7,19 @@ from fastapi import Depends,HTTPException,status,Response,APIRouter
 from typing import List, Optional
 
 
-from .. import schemas
-from .. import models  
-from ..database import get_db
+from app import schemas
+from app import models  
+from app.database import get_db
 from sqlalchemy.orm import Session
-from .. import oauth2
+from app import oauth2
 from sqlalchemy import func
+
+# from .. import schemas
+# from .. import models  
+# from ..database import get_db
+# from sqlalchemy.orm import Session
+# from .. import oauth2
+# from sqlalchemy import func
 
 router=APIRouter(
     prefix="/posts",
