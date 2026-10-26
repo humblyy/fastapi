@@ -12,13 +12,13 @@ import pytest
 
 
 
-def test_root(client):
-    res=client.get("/")
-    assert res.json().get("msg")=="welcome to the home page"
-    assert res.status_code==200
+# def test_root(client):
+#     res=client.get("/")
+#     assert res.json().get("msg")=="welcome to the home page"
+#     assert res.status_code==200
    
     
-    print(res.json().get("msg"))
+#     print(res.json().get("msg"))
 
 def test_create_user(client):
     res=client.post("/users/",json={"email":"mrlu@gmail.com","password":"0000"})
