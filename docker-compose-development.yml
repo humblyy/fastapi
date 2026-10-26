@@ -1,0 +1,81 @@
+
+# version: '3'
+# services:
+#   api:
+#     build: .
+#     # depends_on:
+#     #   - postgres
+
+#     ports:
+#       - 8000:8000
+#     volumes:
+#       - ./:/usr/src/app
+#     command:  uvicorn app.orm:app --host 0.0.0.0 --port 8000 --reload
+# #     # env_file:
+# #     #   - ./.env
+#     environment:
+#         - DATABASE_HOSTNAME= postgres
+#         - DATABASE_NAME= social_DB
+#         - DATABASE_USERNAME= postgres
+#         - DATABASE_PASSWORD= 0000
+#         - JWT_SECRET_KEY= HELLO WORLD THIS IS YIMER
+#         - ALGORITHM= HS256
+#         - ACCESS_TOKEN_EXPIRES= 60
+# #         -sqlalchemy.url = postgresql+psycopg2://postgres:0000@localhost/social_DB
+
+#   postgres:
+#     image: postgres
+#     environment:
+#       - POSTGRES_PASSWORD: 0000
+#       - POSTGRES_DB: social_DB
+#     volumes:
+#       - postgres-db:/var/lib/postgresql/data
+# volumes:
+#   postgres-db:
+
+# # # command
+# # # docker-compose up -
+
+
+
+
+
+
+version: '3.9'
+
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./:/usr/src/app:ro
+    command: uvicorn app.orm:app --host 0.0.0.0 --port 8000 --reload
+    depends_on:
+      - postgres
+    environment:
+      - DATABASE_HOSTNAME=postgres
+      - DATABASE_NAME=social_DB
+      - DATABASE_USERNAME=postgres
+      - DATABASE_PASSWORD=0000
+      - JWT_SECRET_KEY=HELLO WORLD THIS IS YIMER
+      - ALGORITHM=HS256
+      - ACCESS_TOKEN_EXPIRES=60
+
+  postgres:
+    image: postgres:18
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=0000
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=social_DB
+    volumes:
+      - postgres-db:/var/lib/postgresql/data
+
+volumes:
+  postgres-db:
+
+
+# ymymm/fastapi
+#  docker push ymymm/socialapp-api:latest

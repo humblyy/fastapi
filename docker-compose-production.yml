@@ -1,0 +1,83 @@
+
+# version: '3'
+# services:
+#   api:
+#     build: .
+#     # depends_on:
+#     #   - postgres
+
+#     ports:
+#       - 8000:8000
+#     volumes:
+#       - ./:/usr/src/app
+#     command:  uvicorn app.orm:app --host 0.0.0.0 --port 8000 --reload
+# #     # env_file:
+# #     #   - ./.env
+#     environment:
+#         - DATABASE_HOSTNAME= postgres
+#         - DATABASE_NAME= social_DB
+#         - DATABASE_USERNAME= postgres
+#         - DATABASE_PASSWORD= 0000
+#         - JWT_SECRET_KEY= HELLO WORLD THIS IS YIMER
+#         - ALGORITHM= HS256
+#         - ACCESS_TOKEN_EXPIRES= 60
+# #         -sqlalchemy.url = postgresql+psycopg2://postgres:0000@localhost/social_DB
+
+#   postgres:
+#     image: postgres
+#     environment:
+#       - POSTGRES_PASSWORD: 0000
+#       - POSTGRES_DB: social_DB
+#     volumes:
+#       - postgres-db:/var/lib/postgresql/data
+# volumes:
+#   postgres-db:
+
+# # # command
+# # # docker-compose up -
+
+
+
+
+
+
+version: '3.9'
+
+services:
+  api:
+    # build: .
+    image: ymymm/socialapp-api:latest
+    ports:
+      - "80:8000"
+    # volumes:
+    #   - ./:/usr/src/app:ro
+    # command: uvicorn app.orm:app --host 0.0.0.0 --port 8000 --reload
+    depends_on:
+      - postgres
+      # where it reads these environment variables from localhost or where
+    environment:
+      - DATABASE_HOSTNAME=${DATABASE_HOSTNAME}
+      - DATABASE_NAME=${DATABASE_NAME}
+      - DATABASE_USERNAME=${DATABASE_USERNAME}
+      - DATABASE_PASSWORD=${DATABASE_PASSWORD}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+      - ALGORITHM=${ALGORITHM}
+      - ACCESS_TOKEN_EXPIRES=${ACCESS_TOKEN_EXPIRES}
+
+  postgres:
+    image: postgres:18
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_DB=${DATABASE_NAME}
+    volumes:
+      - postgres-db:/var/lib/postgresql/data
+
+volumes:
+  postgres-db:
+
+
+# ymymm/fastapi
+#  docker push ymymm/socialapp-api:latest
