@@ -117,7 +117,7 @@ jobs:
       name: testing
     env:
       DATABASE_HOSTNAME: ${{ secrets.DATABASE_HOSTNAME }}
-      POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+      POSTGRES_DB: test_social
       POSTGRES_USER: ${{ secrets.DATABASE_USERNAME }}
       POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
       JWT_SECRET_KEY: ${{ secrets.JWT_SECRET_KEY }}

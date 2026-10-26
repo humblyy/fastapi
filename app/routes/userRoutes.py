@@ -22,7 +22,6 @@ router=APIRouter(
 # hash
 from app.utils import hash_fun
 # from ..utils import hash_fun
-models.Base.metadata.create_all(bind=engine)
 
 
 
