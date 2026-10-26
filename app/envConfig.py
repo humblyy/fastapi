@@ -7,7 +7,7 @@ from pydantic_settings import BaseSettings,SettingsConfigDict
 class Settings(BaseSettings):
     
     database_hostname:str
-    database_name:str
+    postgres_db:str
     postgres_user:str
     postgres_password:str
     jwt_secret_key:str

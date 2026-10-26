@@ -14,7 +14,7 @@ from app.envConfig import settings
 # from .envConfig import settings
 
 # establish connection between database and sqlalchemy
-SQLALCHEMY_DATABASE_URL=f'postgresql://{settings.postgres_user}:{settings.postgres_password}@{settings.database_hostname}/{settings.database_name}'
+SQLALCHEMY_DATABASE_URL=f'postgresql://{settings.postgres_user}:{settings.postgres_password}@{settings.database_hostname}/{settings.postgres_db}'
 engine=create_engine(SQLALCHEMY_DATABASE_URL)
 
 sessionLocal=sessionmaker(autoflush=False,bind=engine,expire_on_commit=False)
