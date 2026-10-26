@@ -31,7 +31,7 @@ app.add_middleware(
 
 @app.get("/")
 def home():
-    return {"msg":"welcome to the home page yimer"}
+    return {"msg":"welcome to the home page of testing"}
 
 app.include_router(postRoutes.router)
 app.include_router(userRoutes.router)
